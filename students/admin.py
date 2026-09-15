@@ -58,3 +58,4 @@ class EnrollmentAdmin(admin.ModelAdmin):
     )
 
     ordering = ("id",)
+    

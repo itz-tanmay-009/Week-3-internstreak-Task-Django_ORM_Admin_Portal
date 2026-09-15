@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Course Dashboard</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 30px;
+            color: #222;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1f2937;
+        }
+
+        h2 {
+            color: #1d4ed8;
+            margin-top: 30px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #2563eb;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+
+        .empty {
+            color: #777;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Student Course Management Dashboard</h1>
+
+        <div class="card">
+            <h2>Students</h2>
+
+            {% if students %}
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Age</th>
+                        <th>Created At</th>
+                    </tr>
+
+                    {% for student in students %}
+                    <tr>
+                        <td>{{ student.id }}</td>
+                        <td>{{ student.student_name }}</td>
+                        <td>{{ student.email }}</td>
+                        <td>{{ student.age }}</td>
+                        <td>{{ student.created_at }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <p class="empty">No students found.</p>
+            {% endif %}
+        </div>
+
+        <div class="card">
+            <h2>Courses</h2>
+
+            {% if courses %}
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Course Name</th>
+                        <th>Course Code</th>
+                        <th>Duration</th>
+                    </tr>
+
+                    {% for course in courses %}
+                    <tr>
+                        <td>{{ course.id }}</td>
+                        <td>{{ course.course_name }}</td>
+                        <td>{{ course.course_code }}</td>
+                        <td>{{ course.duration_months }} months</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <p class="empty">No courses found.</p>
+            {% endif %}
+        </div>
+
+        <div class="card">
+            <h2>Enrollments</h2>
+
+            {% if enrollments %}
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Student</th>
+                        <th>Course</th>
+                        <th>Enrollment Date</th>
+                    </tr>
+
+                    {% for enrollment in enrollments %}
+                    <tr>
+                        <td>{{ enrollment.id }}</td>
+                        <td>{{ enrollment.student.student_name }}</td>
+                        <td>{{ enrollment.course.course_name }}</td>
+                        <td>{{ enrollment.enrollment_date }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <p class="empty">No enrollments found.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
